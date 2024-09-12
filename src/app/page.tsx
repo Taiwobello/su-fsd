@@ -56,7 +56,7 @@ export default function Home() {
   useEffect(() => {
     fetchItems(defaultPageParameters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortField]);
+  }, [sortField, sortOrder]);
 
   const handleSortChange = (value: string) => {
     if (value.includes("created_at")) {
@@ -73,6 +73,10 @@ export default function Home() {
     fetchItems({ pageNumber, pageSize });
   };
 
+  const title = sortOptions.find(
+    (option) => option.value === `${sortField}_${sortOrder}`
+  )?.label;
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -83,7 +87,7 @@ export default function Home() {
             marginBottom: 20
           }}
         >
-          <Col span={6}>
+          <Col>
             <label className={styles.label}>Sort By:</label>
             <Select
               style={{ width: 200 }}
@@ -98,6 +102,7 @@ export default function Home() {
             </Select>
           </Col>
         </Row>
+        <h1 className={styles.title}>{`Items Sorted By ${title}`}</h1>
         <Table
           dataSource={items}
           columns={columns}
@@ -110,6 +115,7 @@ export default function Home() {
             showSizeChanger: true,
             onChange: handleTableChange
           }}
+          bordered
         />
       </main>
     </div>

@@ -1,5 +1,17 @@
-.label {
-  font-size: 18px;
-  display: block;
-  margin-bottom: 10px;
+.page {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+  max-height: 1vh;
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 10px;
+  }
 }
